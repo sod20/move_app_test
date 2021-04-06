@@ -3,7 +3,9 @@ import { render } from 'react-dom';
 import { message, Card } from 'antd';
 import { Row, Col } from 'antd';
 import { Layout } from 'antd';
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag } from 'antd';
+import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
+
 import 'antd/dist/antd.css';
 import '../index.css';
 const { Header, Content, Footer } = Layout;
@@ -52,41 +54,55 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
+
+const getUsersData() {
+    const res = await axios.get('https://jsonplaceholder.typicode.com/users')
+    console.log(res.data)
+    this.setState({loading:false, users: res.data})
+}
+
+componentDidMount(){
+    this.getUsersData()
+}
 
 const Contacts = () => {
+    axios.get('http://private-9ff5e-stackoverflow.apiary-mock.com/questions', {
+        responseType: 'json'
+    }).then(response => {
+        this.setState({ tableData: response.data });
+    });
 
+    /*
+    render() {
   return (
-    <Layout className="layout">
-        <Content style={{ padding: '0 50px' }}>
-            <Row>
-                <Table dataSource={data} columns={columns} />
-            </Row>
-        </Content>
-    </Layout>
-  );
+    <div>
+      <Get url="/api/user" params={{id: "12345"}}>
+        {(error, response, isLoading, makeRequest, axios) => {
+          if(error) {
+            return (<div>Something bad happened: {error.message} <button onClick={() => makeRequest({ params: { reload: true } })}>Retry</button></div>)
+          }
+          else if(isLoading) {
+            return (<div>Loading...</div>)
+          }
+          else if(response !== null) {
+            return (<div>{response.data.message} <button onClick={() => makeRequest({ params: { refresh: true } })}>Refresh</button></div>)
+          }
+          return (<div>Default message before request is made.</div>)
+        }}
+      </Get>
+    </div>
+  )
+}
+    */
+    return (
+        <Layout className="layout">
+            <Content style={{ padding: '0 50px' }}>
+                <Row>
+                    <Table dataSource={this.state.tableData} columns={columns} />
+                </Row>
+            </Content>
+        </Layout>
+    );
 };
 
 export default Contacts;
