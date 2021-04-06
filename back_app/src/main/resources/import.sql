@@ -1,0 +1,12 @@
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo', 'alejandro@naranjo.com', 'alejandronaranjo1', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 2', 'alejandro@naranjo.com', 'alejandronaranjo2', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 3', 'alejandro@naranjo.com', 'alejandronaranjo3', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 4', 'alejandro@naranjo.com', 'alejandronaranjo4', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 5', 'alejandro@naranjo.com', 'alejandronaranjo5', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 6', 'alejandro@naranjo.com', 'alejandronaranjo6', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 7', 'alejandro@naranjo.com', 'alejandronaranjo7', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 8', 'alejandro@naranjo.com', 'alejandronaranjo8', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 9', 'alejandro@naranjo.com', 'alejandronaranjo9', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 10', 'alejandro@naranjo.com', 'alejandronaranjo10', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 11', 'alejandro@naranjo.com', 'alejandronaranjo11', '123456789');
+INSERT INTO contacts (name, email, password, phone ) VALUES ('Alejandro Naranjo 12', 'alejandro@naranjo.com', 'alejandronaranjo12', '123456789');
