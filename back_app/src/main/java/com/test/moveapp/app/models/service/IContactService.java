@@ -6,4 +6,6 @@ import com.test.moveapp.app.models.entity.Contact;
 
 public interface IContactService extends CrudRepository<Contact, Long> {
 	
+	Contact findByEmail(String email);
+	
 }

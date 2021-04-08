@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.moveapp.app.models.entity.Contact;
-import com.test.moveapp.app.models.entity.LoginData;
 import com.test.moveapp.app.models.service.IContactService;
 
 @RestController
@@ -25,14 +24,7 @@ public class ContactController {
 	private IContactService contactService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
-	
-	@CrossOrigin(origins="*")
-	@RequestMapping(method = RequestMethod.POST, value="/login", produces = {"application/json"})
-	public ResponseEntity<String> login(@RequestBody LoginData loginData) {
-		logger.info("Login Data: email: " + loginData.getEmail() + " - password: " + loginData.getPassword());
-		return ResponseEntity.ok("Soon");
-	}
-	
+		
 	@RequestMapping(method = RequestMethod.POST, value="/signup", produces = {"application/json"})
 	public ResponseEntity<Contact> signup(@RequestBody Contact contact) {
 		logger.info("SignUp Data: email: " + contact.getEmail() + " - password: " + contact.getPassword());

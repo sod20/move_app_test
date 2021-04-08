@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +18,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -34,14 +32,13 @@ public class Contact implements Serializable {
 	// at least 1 lowercase, 1 uppercase 2 numbers, length 8
 	//@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d.*\\d)[a-zA-Z\\d]{8,}$")
 	private String password;
-	private String token;
 	@Column(name = "is_active")
 	private Boolean isActive;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_login")
 	private Date lastLogin;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -57,7 +54,6 @@ public class Contact implements Serializable {
 		this.created = new Date();
 		this.modified = new Date();
 		this.isActive = true;
-		this.token = UUID.randomUUID().toString();
 	}
 
 	public Long getId() {
@@ -83,15 +79,7 @@ public class Contact implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
+	
 	public Boolean getIsActive() {
 		return isActive;
 	}

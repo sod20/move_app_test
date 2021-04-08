@@ -8,13 +8,9 @@ import java.util.function.Function;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import com.test.moveapp.app.controllers.JwtAuthenticationController;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
