@@ -22,7 +22,7 @@ import com.test.moveapp.app.models.entity.RegisterRequest;
 import com.test.moveapp.app.models.service.IContactService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("api/contacts")
 public class ContactController {
 	

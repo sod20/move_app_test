@@ -51,7 +51,7 @@ const Contacts = () => {
     );*/
     return (
         <div>
-          <Get url="http://localhost:8080/contacts/list">
+          <Get url="http://localhost:8080/api/contacts/list" header="Authorization: Bearer: ">
             {(error, response, isLoading, makeRequest, axios) => {
               if(error) {
                 return (<div>Something bad happened: {error.message} <button onClick={() => makeRequest({ params: { reload: true } })}>Retry</button></div>)

@@ -10,7 +10,7 @@ import {
   } from "react-router-dom";
 import { Layout, Menu, Button } from 'antd'
 import Contacts from  './contacts';
-//import Login from './login';
+import'./login';
 import 'antd/dist/antd.css';
 import '../index.css';
 
@@ -24,14 +24,19 @@ const App = () => {
             <Router>
                 <Menu theme="dark" mode="horizontal">
                     <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to="/contacts">Contacts</Link></Menu.Item>
+                    <Menu.Item key="2"><Link to="/login">Login</Link></Menu.Item>
+                    <Menu.Item key="3"><Link to="/register">Register</Link></Menu.Item>
+                    <Menu.Item key="4"><Link to="/contacts">Contacts</Link></Menu.Item>
                 </Menu>
                 <Switch>
                     <Route exact path="/">
                         <Home />
                     </Route>
+                    <Route path="/register">
+                        <Register />
+                    </Route>
                     <Route path="/login">
-                        <LoginPage />
+                        <Login />
                     </Route>
                     <PrivateRoute path="/contacts">
                         <Contacts />
@@ -155,8 +160,16 @@ const fakeAuth = {
     );
   }
 
+  function Register() {
+    return (
+      <h2>
+        Register page
+      </h2>
+    );
+  }
+
   
-  function LoginPage() {
+  /*function LoginPage() {
     let history = useHistory();
     let location = useLocation();
     let auth = useAuth();
@@ -176,4 +189,4 @@ const fakeAuth = {
         </Button>
       </div>
     );
-  }
+  }*/
