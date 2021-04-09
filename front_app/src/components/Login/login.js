@@ -28,13 +28,6 @@ export default function Login({ setToken }) {
     };
     
     const handleSubmit = async e => {
-        //e.preventDefault();
-        /*const token = await loginUser({
-          username,
-          password
-        });
-        setToken(token);*/
-        
         const user = {
             'username': username,
             'password': password

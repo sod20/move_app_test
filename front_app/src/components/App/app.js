@@ -22,8 +22,29 @@ function App() {
     
     const { token, setToken } = useToken();
     
-    if(!token) {
-        return <Login setToken={setToken} />
+    if(! token) {
+        return (
+          <Layout className="layout">
+            <Header>
+            <BrowserRouter>
+                <Menu theme="dark" mode="horizontal">
+                    <Menu.Item key="1"><Link to="/">Login</Link></Menu.Item>
+                    <Menu.Item key="2"><Link to="/register">Register</Link></Menu.Item>
+                </Menu>
+              <Switch>
+                <Route path="/">
+                 <Login setToken={setToken} />
+                </Route>
+                <Route path="/register">
+                  <Register setToken={setToken}/>
+                </Route>
+              </Switch>
+            </BrowserRouter>
+            </Header>
+          </Layout>
+        );
+        
+        
     }
 
     return (

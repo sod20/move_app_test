@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
 import { Card, Modal } from 'antd';
@@ -166,3 +167,7 @@ export default function Register({setToken}) {
       );
     return (homepage);
   }
+
+Register.propTypes = {
+    setToken: PropTypes.func.isRequired
+}
