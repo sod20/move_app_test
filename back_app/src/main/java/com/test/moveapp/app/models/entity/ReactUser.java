@@ -17,6 +17,7 @@ public class ReactUser implements Serializable {
 	private Long Id;
 	private String username;
 	private String password;
+	private String token;
 	private Boolean enabled;
 
 	public Long getId() {
@@ -49,6 +50,14 @@ public class ReactUser implements Serializable {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	private static final long serialVersionUID = -195939716855192996L;

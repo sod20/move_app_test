@@ -1,19 +1,24 @@
 package com.test.moveapp.app.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.moveapp.app.models.entity.Contact;
+import com.test.moveapp.app.models.entity.RegisterRequest;
 import com.test.moveapp.app.models.service.IContactService;
 
 @RestController
@@ -24,10 +29,26 @@ public class ContactController {
 	@Autowired
 	private IContactService contactService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST, produces = {"application/json"})
+	public ResponseEntity<Object> edit(@PathVariable Long id, @Valid @RequestBody RegisterRequest data, BindingResult result) {
+		if(result.hasErrors()) {
+			Map<String, String> errors = new HashMap<>();
+			result.getFieldErrors().forEach( err -> {
+				errors.put(err.getField(), err.getDefaultMessage());
+			});
+			return ResponseEntity.ok(errors); 
+		}
+		Contact c = contactService.findById(id).orElse(null);
+		if (c == null) {
 			
-	public void edit() {
+		}
+		return ResponseEntity.ok("");
+	}
+	
+	@RequestMapping(value="/delete/{id}", method = RequestMethod.POST, produces = {"application/json"})
+	public ResponseEntity<Object> delete(@PathVariable Long id) {
 		
+		return ResponseEntity.ok("");
 	}
 	
 	@RequestMapping(value="/list", produces = {"application/json"})

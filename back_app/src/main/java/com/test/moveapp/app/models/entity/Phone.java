@@ -16,11 +16,11 @@ public class Phone implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	private Integer number;
+	private String number;
 	@Column(name = "city_code")
-	private Integer cityCode;
+	private String cityCode;
 	@Column(name = "country_code")
-	private Integer countryCode;
+	private String countryCode;
 
 	public Long getId() {
 		return Id;
@@ -30,27 +30,27 @@ public class Phone implements Serializable {
 		Id = id;
 	}
 
-	public Integer getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
-	public Integer getCityCode() {
+	public String getCityCode() {
 		return cityCode;
 	}
 
-	public void setCityCode(Integer cityCode) {
+	public void setCityCode(String cityCode) {
 		this.cityCode = cityCode;
 	}
 
-	public Integer getCountryCode() {
+	public String getCountryCode() {
 		return countryCode;
 	}
 
-	public void setCountryCode(Integer countryCode) {
+	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
 
