@@ -42,4 +42,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
 	}
+	
+	public UserDetails registrationUser(String username, String password) {
+		return new User(username, password, new ArrayList<>());
+	}
 }

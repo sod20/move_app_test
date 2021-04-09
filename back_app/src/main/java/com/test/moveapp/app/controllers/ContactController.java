@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.moveapp.app.models.entity.Contact;
+import com.test.moveapp.app.models.entity.ListResponse;
 import com.test.moveapp.app.models.entity.RegisterRequest;
 import com.test.moveapp.app.models.service.IContactService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin("*")
 @RequestMapping("api/contacts")
 public class ContactController {
 	
@@ -52,9 +53,12 @@ public class ContactController {
 	}
 	
 	@RequestMapping(value="/list", produces = {"application/json"})
-	public ResponseEntity<List<Contact>> list() {
+	public ResponseEntity<ListResponse> list() {
 		ArrayList<Contact> contacts = (ArrayList<Contact>) contactService.findAll();
-		return ResponseEntity.ok(contacts);
+		ListResponse response = new ListResponse();
+		response.setMessage("contacts data");
+		response.setData(contacts);
+		return ResponseEntity.ok(response);
 	}
 	
 }

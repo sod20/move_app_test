@@ -28,6 +28,7 @@ import com.test.moveapp.app.models.service.IReactUserService;
 import com.test.moveapp.app.models.service.JwtUserDetailsService;
 
 import com.test.moveapp.app.config.JwtTokenUtil;
+import com.test.moveapp.app.models.entity.ApiResponse;
 import com.test.moveapp.app.models.entity.Contact;
 import com.test.moveapp.app.models.entity.RegisterRequest;
 import com.test.moveapp.app.models.entity.RegisterResponse;
@@ -93,11 +94,12 @@ public class JwtAuthenticationController {
 			result.getFieldErrors().forEach( err -> {
 				errors.put(err.getField(), err.getDefaultMessage());
 			});
-			return ResponseEntity.ok(errors); 
+			ApiResponse apiResponse = new ApiResponse();
+			apiResponse.code = 400;
+			apiResponse.message = "Validation error";
+			apiResponse.data = errors;
+			return ResponseEntity.ok(apiResponse); 
 		}
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(data.getEmail());
-		
-		final String token = jwtTokenUtil.generateToken(userDetails);
 		
 		// create ReactUser
 		ReactUser user = new ReactUser();
@@ -105,6 +107,10 @@ public class JwtAuthenticationController {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(data.getPassword()));
 		user.setEnabled(true);
+
+		final UserDetails userDetails = userDetailsService.registrationUser(data.getEmail(), encoder.encode(data.getPassword()));
+		final String token = jwtTokenUtil.generateToken(userDetails);
+
 		user.setToken(token);
 		userService.save(user);
 		// create contact
@@ -115,6 +121,10 @@ public class JwtAuthenticationController {
 		contactService.save(c);
 		
 		// return ResponseEntity.ok(data);
-		return ResponseEntity.ok(new RegisterResponse(c.getId(), c.getCreated(), c.getModified(), c.getLastLogin(), token, c.getIsActive()));
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.code = 200;
+		apiResponse.message = "registration success";
+		apiResponse.data = new RegisterResponse(c.getId(), c.getCreated(), c.getModified(), c.getLastLogin(), token, c.getIsActive());
+		return ResponseEntity.ok(apiResponse);
 	}
 }
