@@ -17,6 +17,7 @@ import com.test.moveapp.app.models.entity.Contact;
 import com.test.moveapp.app.models.service.IContactService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/contacts")
 public class ContactController {
 	
@@ -24,18 +25,11 @@ public class ContactController {
 	private IContactService contactService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
-		
-	@RequestMapping(method = RequestMethod.POST, value="/signup", produces = {"application/json"})
-	public ResponseEntity<Contact> signup(@RequestBody Contact contact) {
-		logger.info("SignUp Data: email: " + contact.getEmail() + " - password: " + contact.getPassword());
-		return ResponseEntity.ok(contact);
-	}
-	
+			
 	public void edit() {
 		
 	}
 	
-	@CrossOrigin(origins="*")
 	@RequestMapping(value="/list", produces = {"application/json"})
 	public ResponseEntity<List<Contact>> list() {
 		ArrayList<Contact> contacts = (ArrayList<Contact>) contactService.findAll();

@@ -31,7 +31,7 @@ public class Contact implements Serializable {
 	private String email;
 	// at least 1 lowercase, 1 uppercase 2 numbers, length 8
 	//@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d.*\\d)[a-zA-Z\\d]{8,}$")
-	private String password;
+	//private String password;
 	@Column(name = "is_active")
 	private Boolean isActive;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -70,14 +70,6 @@ public class Contact implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	
 	public Boolean getIsActive() {

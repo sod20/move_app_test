@@ -11,13 +11,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.test.moveapp.app.models.entity.Contact;
+import com.test.moveapp.app.models.entity.ReactUser;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	public IContactService clientService;
+	@Autowired
+	public IReactUserService userService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(JwtUserDetailsService.class);
 	
@@ -27,13 +29,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 			return new User("testuser", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
 					new ArrayList<>());
 		} else {
-			Contact c = this.clientService.findByEmail(username);
+			ReactUser u = userService.findByUsername(username);
 			
-			if (c == null) {
-				logger.info("JwtUserDetailsService::: Contact not found");
+			if (u == null) {
+				logger.info("JwtUserDetailsService::: User not found");
 			} else {
-				logger.info("JwtUserDetailsService::: Contact email: " + c.getEmail());
-				return new User(c.getEmail(), c.getEmail(),
+				logger.info("JwtUserDetailsService::: User email: " + u.getUsername());
+				return new User(u.getUsername(), u.getPassword(),
 						new ArrayList<>());
 			}
 			
