@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.moveapp.app.models.entity.Contact;
-import com.test.moveapp.app.models.entity.ListResponse;
+import com.test.moveapp.app.models.entity.ApiResponse;
 import com.test.moveapp.app.models.entity.RegisterRequest;
 import com.test.moveapp.app.models.service.IContactService;
 
@@ -55,7 +55,8 @@ public class ContactController {
 	@RequestMapping(value="/list", produces = {"application/json"})
 	public ResponseEntity<ListResponse> list() {
 		ArrayList<Contact> contacts = (ArrayList<Contact>) contactService.findAll();
-		ListResponse response = new ListResponse();
+		ApiResponse response = new ApiResponse();
+		response.code = 200;
 		response.setMessage("contacts data");
 		response.setData(contacts);
 		return ResponseEntity.ok(response);
